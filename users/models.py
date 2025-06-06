@@ -17,15 +17,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, phone, full_name, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
-
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuser must have is_staff=True.')
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuser must have is_superuser=True.')
-
+        # Bu yerda is_staff, is_superuser, is_active kerak emas
         return self.create_user(phone, full_name, password, **extra_fields)
 
 
@@ -49,6 +41,8 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
     passport_scan_with_face = models.ImageField(upload_to='passport_scan_with_face', blank=True, null=True)
     passport_seria = models.CharField(max_length=50, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    objects = UserManager()
 
     USERNAME_FIELD = 'phone'  # login uchun foydalaniladigan field
     REQUIRED_FIELDS = ['full_name']
