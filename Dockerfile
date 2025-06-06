@@ -22,6 +22,9 @@ RUN chmod 755 /Ijara/staticfiles
 # Copy project files
 COPY . /Ijara/
 
+RUN python manage.py collectstatic --noinput
+
+
 # Django settings
 ENV DJANGO_SETTINGS_MODULE=config.settings
 
