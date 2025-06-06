@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-q5)##p)_)kr9+mh41i@fy9arg9)(j5&uq&d!lb#ml=boqj(6%^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ijara.digitallaboratory.uz', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,23 +77,23 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'ijara',  # PostgreSQL bazasi nomi
-#         'USER': 'user_ijara',  # PostgreSQL foydalanuvchi nomi
-#         'PASSWORD': 'password_ijara',  # PostgreSQL paroli
-#         'HOST': 'ijara_db',  # Docker Compose'dagi konteyner nomi
-#         'PORT': '5432',  # PostgreSQL uchun standart port
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ijara',  # PostgreSQL bazasi nomi
+        'USER': 'user_ijara',  # PostgreSQL foydalanuvchi nomi
+        'PASSWORD': 'password_ijara',  # PostgreSQL paroli
+        'HOST': 'ijara_db',  # Docker Compose'dagi konteyner nomi
+        'PORT': '5432',  # PostgreSQL uchun standart port
+    }
+}
 
 
 

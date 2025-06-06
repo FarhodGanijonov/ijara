@@ -5,41 +5,30 @@ services:
     build: .
     env_file:
       - .env
-    command: sh -c "python manage.py migrate && daphne -b 0.0.0.0 -p 8000 config.asgi:application"
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/Mardex
-      - static_volume:/Mardex/staticfiles
-      - media_volume:/Mardex/mediafiles
+      - .:/Ijara
+      - static_volume:/Ijara/staticfiles
+      - media_volume:/Ijara/mediafiles
     ports:
-      - "8021:8000"
+      - "8022:8000"
     depends_on:
-      - mardex_db
-      - redis
+      - ijara_db
     restart: always
 
-  mardex_db:
+  ijara_db:
     image: postgres:latest
     environment:
-      POSTGRES_DB: mardex
-      POSTGRES_USER: user_mardex
-      POSTGRES_PASSWORD: password_mardex
+      POSTGRES_DB: ijara
+      POSTGRES_USER: user_ijara
+      POSTGRES_PASSWORD: password_ijara
     ports:
-      - "5436:5432"
+      - "5431:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    restart: always
-
-
-  redis:
-    image: redis:alpine
-    ports:
-      - "6372:6379"
-    volumes:
-      - redis_data:/data
     restart: always
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
-  redis_data:
